@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html
+        lang="ko"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+>
+<main layout:fragment="content">
+    <div class="container">
+        <link rel="stylesheet" type="text/css" href="/static/css/adminlist.css">
+        <div class="row">
+            <div class="col">
+                <div class="admin-title-row">
+                    <h1>관리자 대쉬보드</h1>
+                </div>
+            </div>
+        </div>
+        <table class="table">
+            <thead>
+            <tr class="table-info">
+                <th class="text-center">ID</th>
+                <th class="text-center">그림명</th>
+                <th class="text-center">시작가</th>
+                <th class="text-center">생성일</th>
+                <th class="text-center">승인 상태</th>
+                <th class="text-center">승인 버튼</th>
+            </tr>
+            </thead>
+            <tbody class="table-group-divider">
+            <tr th:each="picture : ${pictures}" th:if="${#strings.equals(picture.pictureStatus,'BEFORE_APPROVE')}">
+                <td class="text-center">
+                    <a th:href="@{'/admin/detail/' + ${picture.pictureId}}" style="text-decoration: none;"><span th:text="${picture.pictureId}"></span></a>
+                </td>
+                <td>
+                    <a th:href="@{'/admin/detail/' + ${picture.pictureId}}" style="text-decoration: none;"><span th:text="${picture.pictureName}"></span></a>
+                </td>
+                <td class="text-center" th:text="${picture.startingPrice}"></td>
+                <td class="text-center" th:text="${picture.bidStartDate}"></td>
+                <td class="text-center" th:text="${picture.pictureStatus}"></td>
+                <td class="text-center">
+                    <form th:action="@{'/admin/approve/' + ${picture.pictureId}}" method="post">
+                        <button type="submit" class="btn btn-success" >Approve</button>
+                    </form>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</main>
+<th:block layout:fragment="script">
+    <script type="application/javascript" th:inline="javascript">
+    </script>
+    <script type="text/javascript">
+    </script>
+</th:block>
+</html>

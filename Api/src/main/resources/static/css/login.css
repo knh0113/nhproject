@@ -1,0 +1,24 @@
+div#login-box {
+    max-width: 430px;
+    margin: 100px auto;
+    border-radius: 70px;
+    height: 50vh;
+    border: 10px solid #18ACDB;
+}
+
+h2.login-title {
+    text-align: center;
+    font-family: Sigmar One;
+    font-style: normal;
+    color: #18ACDB;
+}
+
+input#email, input#password {
+    background-color: #E8F0FE;
+    text-align: center;
+}
+
+#rememberMe-container {
+    text-align: center;
+}
+

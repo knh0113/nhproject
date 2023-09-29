@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html
+        lang="ko"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+>
+<main layout:fragment="content">
+    <link rel="stylesheet" type="text/css" href="/static/css/index.css"/>
+    <div class="container body">
+        <div class="auction-container">
+            <div class="title-sector">
+                <div style="display: flex; align-items: center;">
+                    <h1 class="title" style="margin-right: 10px;">경매 예정작</h1>
+                    <h3><span class="badge rounded-pill text-bg-primary">NEW</span></h3>
+                </div>
+                <button type="button" class="btn btn-primary more" onclick="movePictureListPage('AFTER_APPROVE')">more</button>
+            </div>
+            <swiper-container
+                    class="swiper"
+                    navigation="true"
+                    speed=500
+                    delay="500"
+                    autoplay="true"
+                    loop="true"
+            >
+                <th:block th:if="${afterApprove.size() == 0}" >
+                    <swiper-slide class="no-pictures">현재 등록된 상품이 존재하지 않습니다.</swiper-slide>
+                </th:block>
+                <th:block th:if="${afterApprove.size() != 0}" >
+                    <swiper-slide data-swiper-autoplay="2000" th:each=" picture : ${afterApprove}">
+                        <div class="box">
+                            <a th:href="'/pictures/'+${picture.id}">
+                                <img
+                                        th:src="'http://xgrnsxldyejc19608959.cdn.ntruss.com/'+${picture.imageUrl}+'?type=f&w=936&h=600'"
+                                        th:alt="${picture.pictureName}"
+                                />
+                            </a>
+                        </div>
+                    </swiper-slide>
+                </th:block>
+            </swiper-container>
+        </div>
+
+        <div class="auction-container">
+            <div class="title-sector">
+                <div style="display: flex; align-items: center;">
+                    <h1 class="title" style="margin-right: 10px;">경매 진행중</h1>
+                    <h3><span class="badge rounded-pill text-bg-info">ING</span></h3>
+                </div>
+                <button type="button" class="btn btn-info more" onclick="movePictureListPage('BIDDING')">more</button>
+            </div>
+            <swiper-container
+                    class="swiper"
+                    navigation="true"
+                    speed=500
+                    delay="500"
+                    autoplay="true"
+                    loop="true"
+            >
+            <th:block th:if="${bidding.size() == 0}" >
+                <swiper-slide class="no-pictures">현재 등록된 상품이 존재하지 않습니다.</swiper-slide>
+            </th:block>
+            <th:block th:if="${bidding.size() != 0}" >
+                <swiper-slide data-swiper-autoplay="2000" th:each=" picture : ${bidding}">
+                    <div class="box">
+                        <a th:href="'/pictures/'+${picture.id}">
+                            <img
+                                    th:src="'http://xgrnsxldyejc19608959.cdn.ntruss.com/'+${picture.imageUrl}+'?type=f&w=936&h=600'"
+                                    th:alt="${picture.pictureName}"
+                            />
+                        </a>
+                    </div>
+                </swiper-slide>
+            </th:block>
+            </swiper-container>
+        </div>
+    </div>
+</main>
+<th:block layout:fragment="script">
+    <script type="application/javascript" th:inline="javascript">
+        function movePictureListPage(status) {
+            location.href=window.location.origin+"/pictures/list?status="+status;
+        }
+    </script>
+    <script type="text/javascript">
+    </script>
+</th:block>
+</html>

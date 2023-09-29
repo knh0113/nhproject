@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html
+        lang="ko"
+        xmlns="http://www.w3.org/1999/xhtml"
+        xmlns:th="http://www.thymeleaf.org"
+        xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+        layout:decorate="~{layout/layout}"
+>
+<main layout:fragment="content">
+    <link rel="stylesheet" type="text/css" href="/static/css/login.css"/>
+    <div class="container">
+        <div class="d-flex justify-content-center bg-white align-items-center" id="login-box">
+            <form th:action="@{/auth/login}" th:object="${requestDto}" method="post" class="login-form">
+                <div class="row">
+                    <div class="col-md-12">
+                        <h2 class="login-title">LOGIN</h2>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <input type="email" id="email" name="email" placeholder="email" class="text-center" required/>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <input type="password" id="password" name="password" placeholder="password" class="text-center"
+                               required/>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <div class="col-md-12">
+                        <div class="form-check">
+                            <input class="form-check-input" type="checkbox" id="rememberMe" name="rememberMe">
+                            <label class="form-check-label" for="rememberMe">
+                                자동 로그인
+                            </label>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" style="margin-bottom: 10px;">
+                    <button class="btn btn-primary before-login-btn centered-button text-center" type="submit">LOGIN
+                    </button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<th:block layout:fragment="script">
+    <script type="application/javascript" th:inline="javascript">
+        function loginCheck() {
+            var email = document.getElementById('email').value;
+            var password = document.getElementById('password').value;
+
+            if (!email || !password) {
+                alert('아이디와 비밀번호를 모두 입력해주세요.');
+                return false;
+            }
+            return true;
+        }
+    </script>
+</th:block>
+</html>
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,28 @@
+.image-container {
+    border: 1px solid #ccc;
+    overflow: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+
+.section {
+    background-color: rgba(220, 220, 220, 0.857);
+    margin-bottom: 20px;
+    width: 100%;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    box-sizing: border-box;
+}
+
+.section-container {
+    background-color: #f0f0f0;
+    padding: 20px;
+    box-sizing: border-box;
+}
